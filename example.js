@@ -1,4 +1,4 @@
-var renderer = PIXI.autoDetectRenderer(800, 600,{backgroundColor : 0x1099bb});
+var renderer = PIXI.autoDetectRenderer(1024, 678,{backgroundColor : 0x1099bb});
 document.body.appendChild(renderer.view);
 
 // create the root of the scene graph
@@ -19,6 +19,23 @@ bunny.position.x = 200;
 bunny.position.y = 150;
 
 stage.addChild(bunny);
+
+var style = {
+    font : 'bold 18px Delitsch',
+    fill : '#F7EDCA',
+//    dropShadow : true,
+//    dropShadowColor : '#000000',
+//    dropShadowAngle : Math.PI / 6,
+//    dropShadowDistance : 3,
+    wordWrap : true,
+    wordWrapWidth : 400
+};
+
+var richText = new PIXI.Text('Yo, our enemies be at -5, we are at 1293. SINK THEIR SHIP!', style);
+richText.x = 650;
+richText.y = 45;
+
+stage.addChild(richText);
 
 // start animating
 animate();
