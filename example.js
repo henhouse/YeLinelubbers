@@ -59,11 +59,49 @@ var style = {
     wordWrapWidth : 400
 };
 
-var richText = new PIXI.Text('Ye Linelubbers!', style);
-richText.x = 310;
-richText.y = 45;
+var richText = new PIXI.Text('Yar, our enemies be at -5, we are at 10. SINK THEIR SHIP!', style);
+richText.position.x = 650;
+richText.position.y = 45;
 
 stage.addChild(richText);
+
+generateNumberLine();
+function generateNumberLine(){
+    // create a new graphics object
+    var graphics = new PIXI.Graphics();
+    var linexStart = 300;
+    var linexEnd = 900;
+    var linexIncremented = linexStart;
+    var liney = 500;
+    var interval = 50;
+    var currentNumber = -11;
+    // begin a green fill..
+    //graphics.beginFill(0x00FF00);
+    
+    // set the line style to have a width of 5 and set the color to red
+    graphics.lineStyle(5, 0x000000);
+    
+    // draw a triangle using lines
+    graphics.moveTo(linexStart,liney);
+    graphics.lineTo(linexEnd, liney);
+    
+    for(var i = currentNumber; currentNumber < 10; currentNumber++){
+        if(currentNumber == -1 || currentNumber == -11 || currentNumber == 9){
+            graphics.moveTo(linexIncremented, liney-50);
+            graphics.lineTo(linexIncremented, liney+50);
+        }else{
+            graphics.moveTo(linexIncremented, liney-30);
+            graphics.lineTo(linexIncremented, liney+30);
+        }
+        linexIncremented += 30;
+    }
+    
+    // end the fill
+    //graphics.endFill();
+    
+    // add it the stage so we see it on our screens..
+    stage.addChild(graphics);
+}
 
 // start animating
 animate();
