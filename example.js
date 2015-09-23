@@ -40,12 +40,23 @@ playText.x = 430;
 playText.y = 365;
 stage.addChild(playText);
 
+var startText = new PIXI.Text('Welcome to LineLubbers!', style);
+startText.x = 200;
+startText.y = 200;
+stage.addChild(startText);
+
 
 graphics.on('mousedown', onDown);
 
 function onDown (eventData)
+
 {
     console.log("I was pressed.");
+    generateNumberLine();
+    stage.removeChild(graphics);
+    stage.addChild(richText);
+    stage.removeChild(playText);
+    stage.removeChild(startText);
 }
 
 var style = {
@@ -63,16 +74,14 @@ var richText = new PIXI.Text('Yar, our enemies be at -5, we are at 10. SINK THEI
 richText.position.x = 650;
 richText.position.y = 45;
 
-stage.addChild(richText);
 
-generateNumberLine();
 function generateNumberLine(){
     // create a new graphics object
     var graphics = new PIXI.Graphics();
     var linexStart = 200;
     var linexEnd = 800;
     var linexIncremented = linexStart;
-    var liney = 690;
+    var liney = 590;
     var interval = 50;
     var currentNumber = -11;
     // begin a green fill..
