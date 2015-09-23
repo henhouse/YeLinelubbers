@@ -49,14 +49,14 @@ function onDown (eventData)
 }
 
 var style = {
-    font : 'bold 50px Delitsch',
+    font : 'bold 25px Delitsch',
     fill : '#F7EDCA',
 //    dropShadow : true,
 //    dropShadowColor : '#000000',
 //    dropShadowAngle : Math.PI / 6,
 //    dropShadowDistance : 3,
     wordWrap : true,
-    wordWrapWidth : 400
+    wordWrapWidth : 350
 };
 
 var richText = new PIXI.Text('Yar, our enemies be at -5, we are at 10. SINK THEIR SHIP!', style);
@@ -69,10 +69,10 @@ generateNumberLine();
 function generateNumberLine(){
     // create a new graphics object
     var graphics = new PIXI.Graphics();
-    var linexStart = 300;
-    var linexEnd = 900;
+    var linexStart = 200;
+    var linexEnd = 800;
     var linexIncremented = linexStart;
-    var liney = 500;
+    var liney = 690;
     var interval = 50;
     var currentNumber = -11;
     // begin a green fill..
