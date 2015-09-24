@@ -1,4 +1,9 @@
 @font-face {
-    font-family: 'Delitsch'; /*a name to be used later*/
-    src: url('DelitschAntiqua.ttf'); /*URL to font*/
+  font-family: 'Delitsch';
+  src: url('Fonts/DelitschAntiqua.eot'); /* IE9 Compat Modes */
+  src: url('Fonts/DelitschAntiqua.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Fonts/DelitschAntiqua.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Fonts/DelitschAntiqua.woff') format('woff'), /* Pretty Modern Browsers */
+       url('Fonts/DelitschAntiqua.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('Fonts/DelitschAntiqua.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
