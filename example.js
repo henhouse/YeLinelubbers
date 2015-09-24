@@ -76,22 +76,21 @@ richText.position.y = 45;
 function generateNumberLine(){
     // create a new graphics object
     var graphics = new PIXI.Graphics();
-    var linexStart = 200;
-    var linexEnd = 800;
+    var linexStart = 20;
+    var linexEnd = 980;
     var linexIncremented = linexStart;
-    var liney = 590;
-    var interval = 50;
+    var liney = 655;
+    var interval = 48;
     var currentNumber = -11;
-    // begin a green fill..
-    //graphics.beginFill(0x00FF00);
-    
+
     // width, color
     graphics.lineStyle(5, 0x000000);
-    
-    // draw a triangle using lines
-    graphics.moveTo(linexStart,liney);
+
+    // draw horizontal line
+    graphics.moveTo(linexStart, liney);
     graphics.lineTo(linexEnd, liney);
-    
+
+    // loop and create vertical lines
     for (var i = currentNumber; currentNumber < 10; currentNumber++)
     {
         if (currentNumber == -1 || currentNumber == -11 || currentNumber == 9)
@@ -105,7 +104,7 @@ function generateNumberLine(){
             graphics.lineTo(linexIncremented, liney+30);
         }
 
-        linexIncremented += 30;
+        linexIncremented += 48;
     }
     
         var style = {
@@ -113,8 +112,8 @@ function generateNumberLine(){
             fill : '#000000',
         };
         var zero = new PIXI.Text('0', style);
-        zero.x = 492;
-        zero.y = 640;
+        zero.x = 491;
+        zero.y = 710;
         stage.addChild(zero);
     
     // add it the stage so we see it on our screens..
