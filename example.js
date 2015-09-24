@@ -18,7 +18,7 @@ bunny.anchor.y = 0.5;
 bunny.position.x = 200;
 bunny.position.y = 150;
 
-//stage.addChild(bunny);
+stage.addChild(bunny);
 
 var graphics = new PIXI.Graphics();
 
@@ -40,7 +40,7 @@ playText.x = 430;
 playText.y = 365;
 stage.addChild(playText);
 
-var startText = new PIXI.Text('Welcome to LineLubbers!', style);
+var startText = new PIXI.Text('Welcome to Linelubbers!', style);
 startText.x = 200;
 startText.y = 200;
 stage.addChild(startText);
@@ -49,9 +49,7 @@ stage.addChild(startText);
 graphics.on('mousedown', onDown);
 
 function onDown (eventData)
-
 {
-    console.log("I was pressed.");
     generateNumberLine();
     stage.removeChild(graphics);
     stage.addChild(richText);
@@ -70,7 +68,7 @@ var style = {
     wordWrapWidth : 350
 };
 
-var richText = new PIXI.Text('Yar, our enemies be at -5, we are at 10. SINK THEIR SHIP!', style);
+var richText = new PIXI.Text('Yar! Our enemies be at -5, we are at 10. SINK THEIR SHIP!', style);
 richText.position.x = 650;
 richText.position.y = 45;
 
@@ -87,21 +85,38 @@ function generateNumberLine(){
     // begin a green fill..
     //graphics.beginFill(0x00FF00);
     
-    // set the line style to have a width of 5 and set the color to red
+    // width, color
     graphics.lineStyle(5, 0x000000);
     
     // draw a triangle using lines
     graphics.moveTo(linexStart,liney);
     graphics.lineTo(linexEnd, liney);
     
-    for(var i = currentNumber; currentNumber < 10; currentNumber++){
-        if(currentNumber == -1 || currentNumber == -11 || currentNumber == 9){
+    for (var i = currentNumber; currentNumber < 10; currentNumber++)
+    {
+        if (currentNumber == -1 || currentNumber == -11 || currentNumber == 9)
+        {
             graphics.moveTo(linexIncremented, liney-50);
             graphics.lineTo(linexIncremented, liney+50);
-        }else{
+            
+            if (currentNumber == -1)
+            {
+                var style = {
+                    font : 'bold 25px Verdana',
+                    fill : '#000000',
+                };
+                var zero = new PIXI.Text('0', style);
+                zero.x = 492;
+                zero.y = liney+50;
+                stage.addChild(zero);
+            }
+        }
+        else
+        {
             graphics.moveTo(linexIncremented, liney-30);
             graphics.lineTo(linexIncremented, liney+30);
         }
+
         linexIncremented += 30;
     }
     
