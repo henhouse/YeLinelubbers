@@ -53,8 +53,8 @@ function testScene()
     ship.anchor.y = 0.5;
 
     // move the sprite to the center of the screen
-    ship.position.x = 100;
-    ship.position.y = 500;
+    ship.position.x = 120;
+    ship.position.y = 600;
 
     var style = {
         font : 'bold 25px Helvetica',
@@ -67,7 +67,7 @@ function testScene()
         wordWrapWidth : 345
     };
 
-    var questionText = new PIXI.Text('Yar! Our enemies be at -5, we are at -10. I won\'t rest until I see \'em hanging from the yardarm!', style);
+    var questionText = new PIXI.Text('Yar! Our enemies be at -5, we are at -8. I won\'t rest until I see \'em hanging from the yardarm!', style);
     questionText.position.x = 650;
     questionText.position.y = 45;
     stage.addChild(questionText);
@@ -76,12 +76,12 @@ function testScene()
 function generateNumberLine(){
     // create a new graphics object
     var graphics = new PIXI.Graphics();
-    var linexStart = 100;
-    var linexEnd = 900;
+    var linexStart = 20;
+    var linexEnd = 980;
     var linexIncremented = linexStart;
     var lineLength = linexEnd - linexStart;
     var increments = lineLength/20;
-    var liney = 590;
+    var liney = 675;
     var currentNumber = -11;
 
     // width, color
@@ -110,7 +110,7 @@ function generateNumberLine(){
 
         var zero = new PIXI.Text('0', {font: 'bold 25px Verdana'});
         zero.x = 491;
-        zero.y = 650;
+        zero.y = 710;
         stage.addChild(zero);
     
     // add it the stage so we see it on our screens..
