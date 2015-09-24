@@ -98,18 +98,6 @@ function generateNumberLine(){
         {
             graphics.moveTo(linexIncremented, liney-50);
             graphics.lineTo(linexIncremented, liney+50);
-            
-            if (currentNumber == -1)
-            {
-                var style = {
-                    font : 'bold 25px Verdana',
-                    fill : '#000000',
-                };
-                var zero = new PIXI.Text('0', style);
-                zero.x = 492;
-                zero.y = liney+50;
-                stage.addChild(zero);
-            }
         }
         else
         {
@@ -120,8 +108,14 @@ function generateNumberLine(){
         linexIncremented += 30;
     }
     
-    // end the fill
-    //graphics.endFill();
+        var style = {
+            font : 'bold 25px Verdana',
+            fill : '#000000',
+        };
+        var zero = new PIXI.Text('0', style);
+        zero.x = 492;
+        zero.y = 640;
+        stage.addChild(zero);
     
     // add it the stage so we see it on our screens..
     stage.addChild(graphics);
