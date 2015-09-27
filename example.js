@@ -82,8 +82,13 @@ function generateNumberLine(){
     var lineLength = linexEnd - linexStart;
     var increments = lineLength/20;
     var liney = 675;
-    var currentNumber = -11;
-
+    var currentNumber = -10;
+    var numX = linexStart-10;
+    var numY = liney+40;
+    var numxIncrement = numX;
+    var ppoo = [];
+    var array = 0;
+    
     // width, color
     graphics.lineStyle(5, 0x000000);
 
@@ -92,9 +97,9 @@ function generateNumberLine(){
     graphics.lineTo(linexEnd, liney);
 
     // loop and create vertical lines
-    for (var i = currentNumber; currentNumber < 10; currentNumber++)
+    for (var i = currentNumber; currentNumber <= 10; currentNumber++)
     {
-        if (currentNumber == -1 || currentNumber == -11 || currentNumber == 9)
+        if (currentNumber == -0 || currentNumber == -10 || currentNumber == 10)
         {
             graphics.moveTo(linexIncremented, liney-30);
             graphics.lineTo(linexIncremented, liney+30);
@@ -103,15 +108,31 @@ function generateNumberLine(){
         {
             graphics.moveTo(linexIncremented, liney-15);
             graphics.lineTo(linexIncremented, liney+15);
+            
         }
-
+        if(currentNumber > 9 || currentNumber < -9){
+            ppoo[array] = new PIXI.Text(currentNumber, {font: 'bold 25px Verdana'});
+            ppoo[array].x = numxIncrement-10;
+            ppoo[array].y = numY;
+            stage.addChild(ppoo[array]);
+            numxIncrement += increments;
+        } else if(currentNumber > -10 && currentNumber < 0){
+            ppoo[array] = new PIXI.Text(currentNumber, {font: 'bold 25px Verdana'});
+            ppoo[array].x = numxIncrement-5;
+            ppoo[array].y = numY;
+            stage.addChild(ppoo[array]);
+            numxIncrement += increments;
+        } else if(currentNumber >= 0 && currentNumber < 10){
+            ppoo[array] = new PIXI.Text(currentNumber, {font: 'bold 25px Verdana'});
+            ppoo[array].x = numxIncrement+2;
+            ppoo[array].y = numY;
+            stage.addChild(ppoo[array]);
+            numxIncrement += increments;
+        }
         linexIncremented += increments;
+        array++;
+        
     }
-
-        var zero = new PIXI.Text('0', {font: 'bold 25px Verdana'});
-        zero.x = 491;
-        zero.y = 710;
-        stage.addChild(zero);
     
     // add it the stage so we see it on our screens..
     stage.addChild(graphics);
