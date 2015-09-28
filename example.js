@@ -1,4 +1,22 @@
 var stage, renderer;
+var questionText;
+var numberine;
+var linexStart = 20;
+var linexEnd = 980;
+var linexIncremented = linexStart;
+var lineLength = linexEnd - linexStart;
+var increments = lineLength/20;
+var liney = 675;
+var currentNumber = -10;
+var numX = linexStart-10;
+var numY = liney+40;
+var numxIncrement = numX;
+var answer = -8;
+var secondAnswer = -3;
+var style = {
+    font : 'bold 50px Chelsea Market',
+    fill : '#ffffff',
+};
 
 function startMenu()
 {
@@ -12,10 +30,7 @@ function startMenu()
     startButton.interactive = true;
     stage.addChild(startButton);
 
-    var style = {
-        font : 'bold 50px Chelsea Market',
-        fill : '#ffffff',
-    };
+    
     var playText = new PIXI.Text('PLAY', style);
     playText.x = 430;
     playText.y = 365;
@@ -36,26 +51,11 @@ function startMenu()
         stage.removeChild(playText);
         stage.removeChild(titleText);
         testScene();
+        init_ship();
     }
 }
 
-function testScene()
-{
-    // create a texture from an image path
-    var shipTexture = PIXI.Texture.fromImage('ship_final.png');
-
-    // create a new Sprite using the texture
-    var ship = new PIXI.Sprite(shipTexture);
-    stage.addChild(ship);
-
-    // center the sprite's anchor point
-    ship.anchor.x = 0.5;
-    ship.anchor.y = 0.5;
-
-    // move the sprite to the center of the screen
-    ship.position.x = 120;
-    ship.position.y = 600;
-
+function testScene(){
     var style = {
         font : 'bold 25px Helvetica',
         fill : '#F7EDCA',
@@ -64,37 +64,28 @@ function testScene()
         dropShadowAngle : Math.PI / 6,
         dropShadowDistance : 2,
         wordWrap : true,
-        wordWrapWidth : 345
+        wordWrapWidth : 375
     };
 
-    var questionText = new PIXI.Text('Yar! Our enemies be at -5, we are at -8. I won\'t rest until I see \'em hanging from the yardarm!', style);
-    questionText.position.x = 650;
-    questionText.position.y = 45;
+    questionText = new PIXI.Text('Ahoy! Place our ship at -8', style);
+    questionText.x = 650;
+    questionText.y = 45;
     stage.addChild(questionText);
-    }
+}
 
 function generateNumberLine(){
     // create a new graphics object
     var graphics = new PIXI.Graphics();
-    var linexStart = 20;
-    var linexEnd = 980;
-    var linexIncremented = linexStart;
-    var lineLength = linexEnd - linexStart;
-    var increments = lineLength/20;
-    var liney = 675;
-    var currentNumber = -10;
-    var numX = linexStart-10;
-    var numY = liney+40;
-    var numxIncrement = numX;
+    numberLine = new PIXI.Graphics();
     var ppoo = [];
     var array = 0;
-    
     // width, color
     graphics.lineStyle(5, 0x000000);
+    numberLine.lineStyle(5, 0x000000);
 
     // draw horizontal line
-    graphics.moveTo(linexStart, liney);
-    graphics.lineTo(linexEnd, liney);
+    numberLine.moveTo(linexStart, liney);
+    numberLine.lineTo(linexEnd, liney);
 
     // loop and create vertical lines
     for (var i = currentNumber; currentNumber <= 10; currentNumber++)
@@ -135,6 +126,7 @@ function generateNumberLine(){
     }
     
     // add it the stage so we see it on our screens..
+    stage.addChild(numberLine);
     stage.addChild(graphics);
 }
 
@@ -159,4 +151,98 @@ function animate() {
 
     // render the container
     renderer.render(stage);
+}
+
+function init_ship(){
+    ship = PIXI.Sprite.fromImage('./ship_final.png');
+    ship.interactive = true;
+    ship.buttonMode = true;
+    ship.anchor.set(0.5);
+    ship
+        // events for drag start
+        .on('mousedown', function(event) {
+            this.data = event.data;
+            //this.alpha = 0.5;
+            this.dragging = true;
+        })
+        // events for drag end
+        .on('mouseup', function() {
+            //this.alpha = 1;
+            this.dragging = false;
+            // set the interaction data to null
+            this.data = null;
+            var snap_object = numberLine_getClosestNumber(this.position.x, this.position.y);
+            if (snap_object != -1) {
+                this.position.x = snap_object.x;
+                this.position.y = snap_object.y-15;
+                
+            }
+            console.log(snap_object);
+            if (snap_object.number == answer) {
+                cont();
+            } else{
+                wrongAns();
+            }
+        })
+        // events for drag move
+        .on('mousemove', function() {
+            if (this.dragging)
+            {
+                var newPosition = this.data.getLocalPosition(this.parent);
+                this.position.x = newPosition.x;
+                this.position.y = newPosition.y;
+            }
+        });
+    // move the sprite to its designated position
+    ship.position.x = 200;
+    ship.position.y = 400;
+    
+    stage.addChild(ship);
+}
+
+function numberLine_getClosestNumber(x, y) {
+    var answerNums = new Array();
+    var range = (linexEnd-linexStart);
+    for (var i = 0; i <= range; i++) {
+        var numline_num = ((i/(range/20))-10);
+        var numline_x = i + linexStart;
+        var numline_y = liney - 60;
+        var d = Math.sqrt( (numline_x - x)*(numline_x - x) + (numline_y - y)*(numline_y - y) );
+        answerNums.push( {distance: d, x: numline_x, y: numline_y, number: numline_num} );
+    }
+    
+    var lowest_index = 0;
+    var lowest_distance = answerNums[0].distance;
+    for (var i = 0; i < answerNums.length; i+=increments) {
+        if (answerNums[i].distance < lowest_distance) {
+            lowest_distance = answerNums[i].distance;
+            lowest_index = i;
+        }
+    }
+    if (lowest_distance > 100) {
+        return -1;
+    }
+    return answerNums[lowest_index];
+}
+
+function cont(){
+    var style = {
+        font : 'bold 25px Helvetica',
+        fill : '#F7EDCA',
+        dropShadow : true,
+        dropShadowColor : '#000000',
+        dropShadowAngle : Math.PI / 6,
+        dropShadowDistance : 2,
+        wordWrap : true,
+        wordWrapWidth : 375
+    };
+    stage.removeChild(questionText);
+    questionText = new PIXI.Text('Yar! Our enemies be 3 away from us in the positive direction, find em for me!', style);
+    questionText.x = 650;
+    questionText.y = 45;
+    stage.addChild(questionText);
+}
+
+function wrongAns(){
+    
 }
