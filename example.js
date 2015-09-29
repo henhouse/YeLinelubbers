@@ -2,6 +2,7 @@ var stage, renderer;
 var ship;
 var enemyShip;
 var questionText;
+var scoreText;
 var numberine;
 var linexStart = 20;
 var linexEnd = 980;
@@ -13,10 +14,14 @@ var currentNumber = -10;
 var numX = linexStart-10;
 var numY = liney+40;
 var numxIncrement = numX;
-var answer = -8;
+var answer;
 var answerCorrect = 0;
-var secondAnswer = -5;
+var secondAnswer;
 var secondAnswerCorrect = 0;
+var score = 100;
+var shotCount = 3;
+var distanceFrom;
+var startPosition;
 var style = {
     font : 'bold 50px Chelsea Market',
     fill : '#ffffff',
@@ -84,11 +89,17 @@ function startMenu()
 
 function testScene()
 {
+    startPosition = Math.floor((Math.random() * 22) - 10);
+    answer = startPosition;
     makeShip();
-    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at -8.', stylePirate);
+    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at ' + startPosition, stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
+    scoreText = new PIXI.Text("Score: " + score, stylePirate);
+    scoreText.x = 800;
+    scoreText.y = 600;
+    stage.addChild(scoreText);
 }
 
 function generateNumberLine()
@@ -107,7 +118,7 @@ function generateNumberLine()
     // loop and create vertical lines
     for (var i = currentNumber; currentNumber <= 10; currentNumber++)
     {
-        if (currentNumber == -0 || currentNumber == -10 || currentNumber == 10)
+        if (currentNumber == 0 || currentNumber == -10 || currentNumber == 10)
         {
             graphics.moveTo(linexIncremented, liney-30);
             graphics.lineTo(linexIncremented, liney+30);
@@ -139,6 +150,7 @@ function generateNumberLine()
     
     // add it the stage so we see it on our screens..
     stage.addChild(graphics);
+    graphics.interactive = true;
 }
 
 function animate()
@@ -267,31 +279,118 @@ function getClosestNumber(x, y)
 
 function cont()
 {
+    distanceFrom = Math.floor((Math.random() * 22) - 10);
+    if (startPosition < 0) {
+        while (distanceFrom + startPosition < - 20) {
+            distanceFrom ++;
+        }
+    }
+    if (startPosition > 20) {
+        while (distanceFrom + startPosition > 20) {
+            distanceFrom --;
+        }
+    }
+    
+    var findEm = distanceFrom - startPosition;
+    
+    secondAnswer = distanceFrom;
+        
     answerCorrect = 1;
+    score += 10;
+    stage.removeChild(scoreText);
     stage.removeChild(questionText);
-    questionText = new PIXI.Text('Yar! Our enemies be 3 away from us in the positive direction, find em for me!', stylePirate);
+    scoreText = new PIXI.Text("Score: " + score, stylePirate);
+    scoreText.x = 800;
+    scoreText.y = 600;
+    questionText = new PIXI.Text('Yar! Our enemies be ' + findEm + ' away from us, find em for me!', stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
+    stage.addChild(scoreText);
     ship.interactive = false;
+    addShot();
     makeEnemy();
 }
 
 function cont2(){
     secondAnswerCorrect = 1;
+    score += 10;
+    stage.removeChild(scoreText);
     stage.removeChild(questionText);
+    scoreText = new PIXI.Text("Score: " + score, stylePirate);
+    scoreText.x = 800;
+    scoreText.y = 600;
     questionText = new PIXI.Text('Good work, you took \'em down!', stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
+    stage.addChild(scoreText);
     enemyShip.interactive = false;
+    addShot();
 }
 
 function wrongAns()
 {
+    score -= 10;
+    stage.removeChild(scoreText);
     stage.removeChild(questionText);
+    scoreText = new PIXI.Text("Score: " + score, stylePirate);
+    scoreText.x = 800;
+    scoreText.y = 600;
     questionText = new PIXI.Text('That\'s the wrong numer you scallywag! Try again.', stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
+    stage.addChild(scoreText);
+    subtractShot();
+    if(shotCount == 0){
+        youLose();
+    }
+}
+function addShot()
+{
+    
+}
+function subtractShot()
+{
+    
+}
+function youLose()
+{
+    //clear the stage
+    for (var i = stage.children.length - 1; i >= 0; i--) {
+        stage.removeChild(stage.children[i]);
+    }
+    var restartButton = new PIXI.Graphics();
+    
+    // draw a rounded rectangle
+    restartButton.lineStyle(2, 0x242124, 1);
+    restartButton.beginFill(0xFF00BB, 0.25);
+    restartButton.drawRoundedRect(350, 350, 300, 100, 15);
+    restartButton.endFill();
+    restartButton.interactive = true;
+    stage.addChild(restartButton);
+    var restartText = new PIXI.Text('Restart?', style);
+    restartText.x = 400;
+    restartText.y = 365;
+    stage.addChild(restartText);
+    var titleText = new PIXI.Text('Our Ship is sunk!', style);
+    titleText.x = 300;
+    titleText.y = 200;
+    stage.addChild(titleText);
+    answerCorrect = 0;
+    secondAnswerCorrect = 0;
+    currentNumer = -10;
+    numxIncrement = numX;
+    linexIncremented = linexStart;
+    restartButton.on('mousedown', onDown);
+
+    function onDown(eventData)
+    {
+        stage.removeChild(restartButton);
+        stage.removeChild(restartText);
+        stage.removeChild(titleText);
+        generateNumberLine();
+        testScene();
+    }
 }
