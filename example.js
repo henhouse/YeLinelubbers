@@ -171,7 +171,7 @@ function makeShip()
                 this.position.y = snapShip.y-15;
                 
             }
-            window.alert(answerCorrect);
+            //window.alert(answerCorrect);
             if (snapShip.number == answer && answerCorrect == 0) {
                 cont();
             }else{
