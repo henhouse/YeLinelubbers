@@ -13,10 +13,12 @@ var currentNumber = -10;
 var numX = linexStart-10;
 var numY = liney+40;
 var numxIncrement = numX;
-var answer = -8;
+var answer;
 var answerCorrect = 0;
-var secondAnswer = -5;
+var secondAnswer;
 var secondAnswerCorrect = 0;
+var distanceFrom;
+var startPosition;
 var style = {
     font : 'bold 50px Chelsea Market',
     fill : '#ffffff',
@@ -84,8 +86,10 @@ function startMenu()
 
 function testScene()
 {
+    startPosition = Math.floor((Math.random() * 22) - 10);
+    answer = startPosition;
     makeShip();
-    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at -8.', stylePirate);
+    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at ' + startPosition, stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
@@ -139,6 +143,7 @@ function generateNumberLine()
     
     // add it the stage so we see it on our screens..
     stage.addChild(graphics);
+    graphics.interactive = true;
 }
 
 function animate()
@@ -267,9 +272,25 @@ function getClosestNumber(x, y)
 
 function cont()
 {
+    distanceFrom = Math.floor((Math.random() * 22) - 10);
+    if (startPosition < 0) {
+        while (distanceFrom + startPosition < - 20) {
+            distanceFrom ++;
+        }
+    }
+    if (startPosition > 20) {
+        while (distanceFrom + startPosition > 20) {
+            distanceFrom --;
+        }
+    }
+    
+    var findEm = distanceFrom - startPosition;
+    
+    secondAnswer = distanceFrom;
+        
     answerCorrect = 1;
     stage.removeChild(questionText);
-    questionText = new PIXI.Text('Yar! Our enemies be 3 away from us in the positive direction, find em for me!', stylePirate);
+    questionText = new PIXI.Text('Yar! Our enemies be ' + findEm + ' away from us, find em for me!', stylePirate);
     questionText.x = 650;
     questionText.y = 45;
     stage.addChild(questionText);
