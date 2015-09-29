@@ -216,7 +216,7 @@ function makeEnemy()
                 this.position.y = snapShip.y-15;
                 
             }
-            window.alert(answerCorrect);
+            //window.alert(answerCorrect);
             if(snapShip.number == secondAnswer && secondAnswerCorrect == 0){
                 cont2();
             }else{
