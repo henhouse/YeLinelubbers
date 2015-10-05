@@ -205,10 +205,12 @@ function makeShotBox(){
 function makeShip()
 {
     var section = 1;
-    ship = PIXI.Sprite.fromImage('ship_final.png');
+    ship = PIXI.Sprite.fromImage('Assets/Other/Ship.png');
     ship.interactive = true;
     ship.buttonMode = true;
     ship.anchor.set(0.5);
+    ship.scale.x += 2.0;
+    ship.scale.y += 2.0;
     ship
         // drag start
         .on('mousedown', function(event) {
@@ -252,10 +254,12 @@ function makeShip()
 
 function makeEnemy()
 {
-    enemyShip = PIXI.Sprite.fromImage('ship_final.png');
+    enemyShip = PIXI.Sprite.fromImage('Assets/Other/BadGuyShip.png');
     enemyShip.interactive = true;
     enemyShip.buttonMode = true;
     enemyShip.anchor.set(0.5);
+    enemyShip.scale.x += 2.0;
+    enemyShip.scale.y += 2.0;
     enemyShip
         // drag start
         .on('mousedown', function(event) {
