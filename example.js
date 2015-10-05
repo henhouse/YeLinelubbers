@@ -47,6 +47,11 @@ window.onload = function()
     // create the root of the scene graph
     stage = new PIXI.Container();
 
+    var background = PIXI.Sprite.fromImage('Assets/Backgrounds/Background1.png');
+    background.width = renderer.width;
+    background.height = renderer.height;
+    stage.addChild(background);
+
     // call first scene
     startMenu();
 
