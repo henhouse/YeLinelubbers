@@ -82,6 +82,14 @@ function startMenu()
     titleText.x = 200;
     titleText.y = 200;
     stage.addChild(titleText);
+    
+    
+    var titleMusic = new Howl({
+        urls: ['Assets/Music/Davy Jones.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5
+    });
 
     startButton.on('mousedown', onDown);
 
