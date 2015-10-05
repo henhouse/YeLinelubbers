@@ -244,8 +244,8 @@ function makeShip()
             }
         });
     // initiallize the ship in its designated location
-    ship.position.x = 200;
-    ship.position.y = 400;
+    ship.position.x = 450;
+    ship.position.y = 500;
     
     stage.addChild(ship);
 }
