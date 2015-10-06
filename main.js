@@ -47,7 +47,7 @@ window.onload = function()
     // create the root of the scene graph
     stage = new PIXI.Container();
 
-    var background = PIXI.Sprite.fromImage('Assets/Backgrounds/Background1.png');
+    var background = PIXI.Sprite.fromImage('Assets/Backgrounds/Background1.svg');
     background.width = renderer.width;
     background.height = renderer.height;
     stage.addChild(background);
@@ -83,13 +83,13 @@ function startMenu()
     titleText.y = 200;
     stage.addChild(titleText);
     
-    
-    var titleMusic = new Howl({
-        urls: ['Assets/Music/Davy Jones.mp3'],
-        autoplay: true,
-        loop: true,
-        volume: 0.5
-    });
+
+//    var titleMusic = new Howl({
+//        urls: ['Assets/Music/Davy Jones.mp3'],
+//        autoplay: true,
+//        loop: true,
+//        volume: 0.5
+//    });
 
     startButton.on('mousedown', onDown);
 
@@ -209,8 +209,6 @@ function makeShip()
     ship.interactive = true;
     ship.buttonMode = true;
     ship.anchor.set(0.5);
-    ship.scale.x += 2.0;
-    ship.scale.y += 2.0;
     ship
         // drag start
         .on('mousedown', function(event) {
@@ -258,8 +256,6 @@ function makeEnemy()
     enemyShip.interactive = true;
     enemyShip.buttonMode = true;
     enemyShip.anchor.set(0.5);
-    enemyShip.scale.x += 2.0;
-    enemyShip.scale.y += 2.0;
     enemyShip
         // drag start
         .on('mousedown', function(event) {
