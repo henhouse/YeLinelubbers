@@ -83,22 +83,6 @@ function startMenu()
     stage.addChild(startButton);
     startButton.on('mousedown', onDown);
 
-<<<<<<< HEAD
-    function onDown(eventData)
-    {
-        stage.removeChild(startButton);
-        stage.removeChild(playText);
-        stage.removeChild(titleText);
-        generateNumberLine();
-        testScene();
-    }
-    
-    var playText = new PIXI.Text('PLAY', style);
-    playText.x = 430;
-    playText.y = 365;
-    stage.addChild(playText);
-=======
-
     var tutorialButton = new PIXI.Graphics();
     tutorialButton = PIXI.Sprite.fromImage('Assets/Buttons/TutorialButton.png');
     tutorialButton.interactive = true;
@@ -129,7 +113,6 @@ function startMenu()
         });
 
     stage.addChild(leaderboardsButton);
->>>>>>> origin/master
 
 
     var titleText = new PIXI.Text('Welcome to Linelubbers!', style);
@@ -138,7 +121,6 @@ function startMenu()
     stage.addChild(titleText);
     
 
-<<<<<<< HEAD
     var titleMusic = new Howl({
         urls: ['Assets/Music/Davy Jones.mp3'],
         autoplay: true,
@@ -165,14 +147,6 @@ function startMenu()
             }
         });
     stage.addChild(music);
-=======
-//    var titleMusic = new Howl({
-//        urls: ['Assets/Music/Davy Jones.mp3'],
-//        autoplay: true,
-//        loop: true,
-//        volume: 0.5
-//    });
->>>>>>> origin/master
 }
 
 function testScene()
