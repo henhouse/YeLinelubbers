@@ -63,16 +63,27 @@ window.onload = function()
 function startMenu()
 {
     var startButton = new PIXI.Graphics();
-
-    // draw a rounded rectangle
-    startButton.lineStyle(2, 0x242124, 1);
-    startButton.beginFill(0xFF00BB, 0.25);
-    startButton.drawRoundedRect(350, 350, 300, 100, 15);
-    startButton.endFill();
+    startButton = PIXI.Sprite.fromImage('Assets/Buttons/StartButton.png');
     startButton.interactive = true;
+    startButton.buttonMode = true;
+    startButton.anchor.set(0.5);
+    startButton.x = 500;
+    startButton.y = 365;
+    startButton
+        // on release
+        .on('mouseup', function() {
+            stage.removeChild(startButton);
+            stage.removeChild(tutorialButton);
+            stage.removeChild(leaderboardsButton);
+            stage.removeChild(titleText);
+            generateNumberLine();
+            testScene();
+        });
+
     stage.addChild(startButton);
     startButton.on('mousedown', onDown);
 
+<<<<<<< HEAD
     function onDown(eventData)
     {
         stage.removeChild(startButton);
@@ -86,6 +97,39 @@ function startMenu()
     playText.x = 430;
     playText.y = 365;
     stage.addChild(playText);
+=======
+
+    var tutorialButton = new PIXI.Graphics();
+    tutorialButton = PIXI.Sprite.fromImage('Assets/Buttons/TutorialButton.png');
+    tutorialButton.interactive = true;
+    tutorialButton.buttonMode = true;
+    tutorialButton.anchor.set(0.5);
+    tutorialButton.x = 500;
+    tutorialButton.y = 475;
+    tutorialButton
+        // on release
+        .on('mouseup', function() {
+            // generate tutorial
+        });
+
+    stage.addChild(tutorialButton);
+
+
+    var leaderboardsButton = new PIXI.Graphics();
+    leaderboardsButton = PIXI.Sprite.fromImage('Assets/Buttons/LeaderboardsButton.png');
+    leaderboardsButton.interactive = true;
+    leaderboardsButton.buttonMode = true;
+    leaderboardsButton.anchor.set(0.5);
+    leaderboardsButton.x = 500;
+    leaderboardsButton.y = 585;
+    leaderboardsButton
+        // on release
+        .on('mouseup', function() {
+            // leaderboard code
+        });
+
+    stage.addChild(leaderboardsButton);
+>>>>>>> origin/master
 
 
     var titleText = new PIXI.Text('Welcome to Linelubbers!', style);
@@ -94,6 +138,7 @@ function startMenu()
     stage.addChild(titleText);
     
 
+<<<<<<< HEAD
     var titleMusic = new Howl({
         urls: ['Assets/Music/Davy Jones.mp3'],
         autoplay: true,
@@ -120,6 +165,14 @@ function startMenu()
             }
         });
     stage.addChild(music);
+=======
+//    var titleMusic = new Howl({
+//        urls: ['Assets/Music/Davy Jones.mp3'],
+//        autoplay: true,
+//        loop: true,
+//        volume: 0.5
+//    });
+>>>>>>> origin/master
 }
 
 function testScene()
