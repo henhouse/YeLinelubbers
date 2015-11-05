@@ -25,6 +25,7 @@ var shotCount = 3;
 var shotBox = [];
 var distanceFrom;
 var startPosition;
+var onOrOff;
 var style = {
     font : 'bold 50px Chelsea Market',
     fill : '#ffffff',
@@ -70,7 +71,16 @@ function startMenu()
     startButton.endFill();
     startButton.interactive = true;
     stage.addChild(startButton);
+    startButton.on('mousedown', onDown);
 
+    function onDown(eventData)
+    {
+        stage.removeChild(startButton);
+        stage.removeChild(playText);
+        stage.removeChild(titleText);
+        generateNumberLine();
+        testScene();
+    }
     
     var playText = new PIXI.Text('PLAY', style);
     playText.x = 430;
@@ -84,23 +94,32 @@ function startMenu()
     stage.addChild(titleText);
     
 
-//    var titleMusic = new Howl({
-//        urls: ['Assets/Music/Davy Jones.mp3'],
-//        autoplay: true,
-//        loop: true,
-//        volume: 0.5
-//    });
-
-    startButton.on('mousedown', onDown);
-
-    function onDown(eventData)
-    {
-        stage.removeChild(startButton);
-        stage.removeChild(playText);
-        stage.removeChild(titleText);
-        generateNumberLine();
-        testScene();
-    }
+    var titleMusic = new Howl({
+        urls: ['Assets/Music/Davy Jones.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5
+    });
+    
+    onOrOff = 1;
+    var music = PIXI.Sprite.fromImage('Assets/Buttons/Volume_On.png');
+    music.interactive = true;
+    music.buttonMode = true;
+    music.x = 100;
+    music.y = 100;
+    music
+        .on('mouseup', function() {
+            if(onOrOff == 1){
+                titleMusic.pause();
+                onOrOff = 0;
+                music.texture = new Pixi.Texture.fromImage('Assets/Buttons/Volume_Off.png');
+            } else {
+                titleMusic.play();
+                onOrOff = 1;
+                music.texture = new Pixi.Texture.fromImage('Assets/Buttons/Volume_On.png');
+            }
+        });
+    stage.addChild(music);
 }
 
 function testScene()
@@ -205,7 +224,7 @@ function makeShotBox(){
 function makeShip()
 {
     var section = 1;
-    ship = PIXI.Sprite.fromImage('Assets/Other/Ship.png');
+    ship = PIXI.Sprite.fromImage('Assets/Other/BadGuyShip.png');
     ship.interactive = true;
     ship.buttonMode = true;
     ship.anchor.set(0.5);
@@ -252,7 +271,7 @@ function makeShip()
 
 function makeEnemy()
 {
-    enemyShip = PIXI.Sprite.fromImage('Assets/Other/BadGuyShip.png');
+    enemyShip = PIXI.Sprite.fromImage('Assets/Other/Ship.png');
     enemyShip.interactive = true;
     enemyShip.buttonMode = true;
     enemyShip.anchor.set(0.5);

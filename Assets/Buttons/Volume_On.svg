@@ -12,10 +12,10 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg3441"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   width="1.0156294"
-   height="1.0156294"
-   viewBox="0 0 1.0156294 1.0156294"
+   inkscape:version="0.48.4 r9939"
+   width="50"
+   height="50"
+   viewBox="0 0 50 50"
    sodipodi:docname="Volume_On.svg">
   <metadata
      id="metadata3447">
@@ -40,35 +40,30 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
      id="namedview3443"
      showgrid="false"
-     inkscape:zoom="232.36822"
-     inkscape:cx="0.50781471"
-     inkscape:cy="0.50781471"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg3441" />
+     inkscape:zoom="3.6307535"
+     inkscape:cx="-19.45234"
+     inkscape:cy="44.932024"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3441"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <image
-     width="1.0156294"
-     height="1.0156294"
+     width="50"
+     height="50"
      preserveAspectRatio="none"
-     style="image-rendering:optimizeSpeed"
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAARCQAAEQkAGJrNK4AAAA
-IGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAHWSURBVHjarNRNiE1x
-GAbw3z3OGIZpalj5SkykWOgglCwYTSnK0kJRN/kqs7BgEptB+RrFErGwsCBFYUopKTZjR00mipKI
-0mVizLV5p47TnTuzuO/qf3o7z/953vd5/qVqtaqRVcqyrF6/CRewCLvxOddbgATv8j8kdcCmB9hB
-LEN7oX8ar3Agj5PWATuPffH9B6NxbkYbLmI2LmMuTuJ3LYbNOJcDK1YXnmMFduAqjmJXLYYzgtne
-4qzxN84v8QHXMDMkL8YZ9KfBZGHIWo7tNVj9xBJsxlNswV1cwiOcwGPsLGVZVkHLBG54gZvB/hO2
-4QcGcA9lPEFrgsok7NUWzDZhDnrCLgNYH+reoCPJba9eTcGvWMazkN+E9zl1XzA1iYFPVKOx/VVY
-i7fBan5cBLPGbNM6CcDv2Biyv6E3krIy5ptiKYZSHItojUQiumoATgurHAnQ17gT6TmF1ViD3hR9
-EZ1q+KoPewqALQFyP9LxEJ1xwSAeYBi30tyMhBUOhYnLOcBqLAbWoQP7cSMIdIafh9JxTNwd53KN
-fj82xBJuY2v483q9x6ESoCNxc5p7UYbxEWeDWTeuxNbHBRwDPRxS5+FroX88Ijf4X+gb/WInGlz/
-BgCnUm095h5hagAAAABJRU5ErkJggg==
-"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAARCQAAEQkAGJrNK4AAAA IGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAHWSURBVHjarNRNiE1x GAbw3z3OGIZpalj5SkykWOgglCwYTSnK0kJRN/kqs7BgEptB+RrFErGwsCBFYUopKTZjR00mipKI 0mVizLV5p47TnTuzuO/qf3o7z/953vd5/qVqtaqRVcqyrF6/CRewCLvxOddbgATv8j8kdcCmB9hB LEN7oX8ar3Agj5PWATuPffH9B6NxbkYbLmI2LmMuTuJ3LYbNOJcDK1YXnmMFduAqjmJXLYYzgtne 4qzxN84v8QHXMDMkL8YZ9KfBZGHIWo7tNVj9xBJsxlNswV1cwiOcwGPsLGVZVkHLBG54gZvB/hO2 4QcGcA9lPEFrgsok7NUWzDZhDnrCLgNYH+reoCPJba9eTcGvWMazkN+E9zl1XzA1iYFPVKOx/VVY i7fBan5cBLPGbNM6CcDv2Biyv6E3krIy5ptiKYZSHItojUQiumoATgurHAnQ17gT6TmF1ViD3hR9 EZ1q+KoPewqALQFyP9LxEJ1xwSAeYBi30tyMhBUOhYnLOcBqLAbWoQP7cSMIdIafh9JxTNwd53KN fj82xBJuY2v483q9x6ESoCNxc5p7UYbxEWeDWTeuxNbHBRwDPRxS5+FroX88Ijf4X+gb/WInGlz/ BgCnUm095h5hagAAAABJRU5ErkJggg== "
      id="image3449"
      x="0"
-     y="0" />
+     y="7.1054274e-015"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"
+     inkscape:export-filename="C:\Users\kyleg_000\Documents\GitHub\YeLinelubbers\Assets\Buttons\Volume_On.png" />
 </svg>
