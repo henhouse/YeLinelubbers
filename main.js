@@ -120,6 +120,7 @@ function startMenu()
     titleText.y = 200;
     stage.addChild(titleText);
     
+    
 
     var titleMusic = new Howl({
         urls: ['Assets/Music/Davy Jones.mp3'],
@@ -128,22 +129,25 @@ function startMenu()
         volume: 0.5
     });
     
+    var texture01 = PIXI.Texture.fromImage('Assets/Buttons/Volume_On.png');
+    var texture02 = PIXI.Texture.fromImage('Assets/Buttons/Volume_Off.png');
+    
     onOrOff = 1;
-    var music = PIXI.Sprite.fromImage('Assets/Buttons/Volume_On.png');
+    var music = new PIXI.Sprite(texture01);
     music.interactive = true;
     music.buttonMode = true;
     music.x = 100;
-    music.y = 100;
+    music.y = 200;
     music
         .on('mouseup', function() {
             if(onOrOff == 1){
                 titleMusic.pause();
                 onOrOff = 0;
-                music.texture = new Pixi.Texture.fromImage('Assets/Buttons/Volume_Off.png');
+                music.setTexture(texture02);
             } else {
                 titleMusic.play();
                 onOrOff = 1;
-                music.texture = new Pixi.Texture.fromImage('Assets/Buttons/Volume_On.png');
+                music.setTexture(texture01);
             }
         });
     stage.addChild(music);
@@ -524,6 +528,20 @@ function youLose(winOrLose)
     shotCount = 3;
     restartButton.on('mousedown', onDown);
 
+   /* 
+   This function was placed so that it could not be referenced in the start menu function.
+   I moved it outside of all functions for now, because I did not know if it was referened
+   anywhere else in code. Should it be a global function or inside another?
+   function onDown(eventData)
+    {
+        stage.removeChild(restartButton);
+        stage.removeChild(restartText);
+        stage.removeChild(titleText);
+        generateNumberLine();
+        testScene();
+    }*/
+}
+
     function onDown(eventData)
     {
         stage.removeChild(restartButton);
@@ -532,4 +550,3 @@ function youLose(winOrLose)
         generateNumberLine();
         testScene();
     }
-}
