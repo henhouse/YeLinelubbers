@@ -48,7 +48,7 @@ window.onload = function()
     // create the root of the scene graph
     stage = new PIXI.Container();
 
-    var background = PIXI.Sprite.fromImage('Assets/Backgrounds/Background1.svg');
+    var background = PIXI.Sprite.fromImage('Assets/Backgrounds/FinalBackground.png');
     background.width = renderer.width;
     background.height = renderer.height;
     stage.addChild(background);
@@ -136,7 +136,7 @@ function startMenu()
     var music = new PIXI.Sprite(texture01);
     music.interactive = true;
     music.buttonMode = true;
-    music.x = 5;
+    music.x = 980;
     music.y = 5;
     music
         .on('mouseup', function() {
@@ -297,8 +297,8 @@ function makeShip()
             }
         });
     // initiallize the ship in its designated location
-    ship.position.x = 450;
-    ship.position.y = 500;
+    ship.position.x = 750;
+    ship.position.y = 455;
     
     stage.addChild(ship);
 }
