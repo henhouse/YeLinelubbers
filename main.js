@@ -344,8 +344,8 @@ function makeEnemy()
             }
         });
     // initiallize the ship in its designated location
-    enemyShip.position.x = 200;
-    enemyShip.position.y = 400;
+    enemyShip.position.x = 750;
+    enemyShip.position.y = 455;
     
     stage.addChild(enemyShip);
 }
