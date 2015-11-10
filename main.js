@@ -131,13 +131,13 @@ function startMenu()
     
     var texture01 = PIXI.Texture.fromImage('Assets/Buttons/Volume_On.png');
     var texture02 = PIXI.Texture.fromImage('Assets/Buttons/Volume_Off.png');
-    
+
     onOrOff = 1;
     var music = new PIXI.Sprite(texture01);
     music.interactive = true;
     music.buttonMode = true;
-    music.x = 100;
-    music.y = 200;
+    music.x = 5;
+    music.y = 5;
     music
         .on('mouseup', function() {
             if(onOrOff == 1){
@@ -148,9 +148,12 @@ function startMenu()
                 titleMusic.play();
                 onOrOff = 1;
                 music.setTexture(texture01);
+                
             }
         });
     stage.addChild(music);
+    music.scale.x = 0.3;
+    music.scale.y = 0.3;
 }
 
 function testScene()
