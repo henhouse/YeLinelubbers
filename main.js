@@ -3,7 +3,11 @@ var ship;
 var graphics;
 var enemyShip;
 var questionText;
+var questionTextX = 625;
+var questionTextY = 45;
 var scoreText;
+var scoreTextX = 375;
+var scoreTextY = 75;
 var numberline;
 var ppoo = [];
 var linexStart = 20;
@@ -164,12 +168,12 @@ function testScene()
     makeShotBox()
     makeShip();
     questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at ' + startPosition, stylePirate);
-    questionText.x = 650;
-    questionText.y = 45;
+    questionText.x = questionTextX;
+    questionText.y = questionTextY;
     stage.addChild(questionText);
     scoreText = new PIXI.Text("Score: " + score, stylePirate);
-    scoreText.x = 375;
-    scoreText.y = 75;
+    scoreText.x = scoreTextX;
+    scoreText.y = scoreTextY;
     stage.addChild(scoreText);
 }
 
@@ -250,7 +254,7 @@ function makeShotBox(){
         shotBox[i].endFill();
         stage.addChild(shotBox[i]);
     }
-    shotBox[4] = new PIXI.Text('Shots Left', stylePirate);
+    shotBox[4] = new PIXI.Text('Cannonballs Left', stylePirate);
     shotBox[4].x = 100;
     shotBox[4].y = 10;
     stage.addChild(shotBox[4]);
@@ -406,11 +410,11 @@ function cont()
     stage.removeChild(scoreText);
     stage.removeChild(questionText);
     scoreText = new PIXI.Text("Score: " + score, stylePirate);
-    scoreText.x = 375;
-    scoreText.y = 75;
+    scoreText.x = scoreTextX;
+    scoreText.y = scoreTextY;
     questionText = new PIXI.Text('Yar! Our enemies be ' + findEm + ' away from us in the ' + direction + ' direction, find em for me!', stylePirate);
-    questionText.x = 650;
-    questionText.y = 45;
+    questionText.x = questionTextX;
+    questionText.y = questionTextY;
     stage.addChild(questionText);
     stage.addChild(scoreText);
     ship.interactive = false;
@@ -427,11 +431,11 @@ function cont2()
     stage.removeChild(scoreText);
     stage.removeChild(questionText);
     scoreText = new PIXI.Text("Score: " + score, stylePirate);
-    scoreText.x = 375;
-    scoreText.y = 75;
+    scoreText.x = scoreTextX;
+    scoreText.y = scoreTextY;
     questionText = new PIXI.Text('Good work, you took \'em down!', stylePirate);
-    questionText.x = 650;
-    questionText.y = 45;
+    questionText.x = questionTextX;
+    questionText.y = questionTextY;
     stage.addChild(questionText);
     stage.addChild(scoreText);
     enemyShip.interactive = false;
@@ -452,15 +456,15 @@ function wrongAns(section)
     stage.removeChild(scoreText);
     stage.removeChild(questionText);
     scoreText = new PIXI.Text("Score: " + score, stylePirate);
-    scoreText.x = 375;
-    scoreText.y = 75;
+    scoreText.x = scoreTextX;
+    scoreText.y = scoreTextY;
     if(section == 1){
         questionText = new PIXI.Text('That\'s the wrong numer you scallywag! Place our ship at ' + startPosition + '.', stylePirate);
     } else if (section == 2){
         questionText = new PIXI.Text('That\'s the wrong numer you scallywag! Our enemies be ' + findEm + ' away from us in the ' + direction + ' direction.', stylePirate);
     }
-    questionText.x = 650;
-    questionText.y = 45;
+    questionText.x = questionTextX;
+    questionText.y = questionTextY;
     stage.addChild(questionText);
     stage.addChild(scoreText);
     if(section != 1){
