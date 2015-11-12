@@ -133,7 +133,7 @@ function startMenu()
         loop: true,
         volume: 0.5
     });
-    
+
     var texture01 = PIXI.Texture.fromImage('Assets/Buttons/Volume_On.png');
     var texture02 = PIXI.Texture.fromImage('Assets/Buttons/Volume_Off.png');
 
@@ -243,14 +243,14 @@ function makeShotBox(){
     
     // draw a rounded rectangle
     shotBox[0].lineStyle(2, 0x242124, 1);
-    shotBox[0].drawRoundedRect(50, 50, 300, 100, 15);
+    shotBox[0].drawRoundedRect(50, 50, 300, 75, 15);
     stage.addChild(shotBox[0]);
     //draw the canonballs
     for(i=shotCount; i>0; i--){
         shotBox[i] = new PIXI.Graphics();
         shotBox[i].lineStyle(2, 0x242124, 1);
         shotBox[i].beginFill(0x000000, 1);
-        shotBox[i].drawCircle(((i*100)), 100, 20);
+        shotBox[i].drawCircle(((i*100)), 88, 20);
         shotBox[i].endFill();
         stage.addChild(shotBox[i]);
     }
