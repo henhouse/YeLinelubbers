@@ -119,15 +119,16 @@ function startMenu()
     titleText.x = 200;
     titleText.y = 200;
     stage.addChild(titleText);
-    
-    
 
-//    var titleMusic = new Howl({
-//        urls: ['Assets/Music/namehere.mp3'],
-//        autoplay: true,
-//        loop: true,
-//        volume: 0.5
-//    });
+
+    // Music by YouTuber Ross Bugden
+    // https://www.youtube.com/watch?v=hVBgKCYrI-c
+    var titleMusic = new Howl({
+        urls: ['Assets/Music/ThemeMusic.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5
+    });
     
     var texture01 = PIXI.Texture.fromImage('Assets/Buttons/Volume_On.png');
     var texture02 = PIXI.Texture.fromImage('Assets/Buttons/Volume_Off.png');
