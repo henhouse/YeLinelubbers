@@ -502,14 +502,14 @@ function youLose(winOrLose)
     // draw a rounded rectangle
     restartButton.lineStyle(2, 0x242124, 1);
     restartButton.beginFill(0xFF00BB, 0.25);
-    restartButton.drawRoundedRect(350, 350, 300, 100, 15);
+    restartButton.drawRoundedRect(350, 450, 300, 100, 15);
     restartButton.endFill();
     restartButton.interactive = true;
     stage.addChild(restartButton);
     
     var restartText = new PIXI.Text('Restart?', style);
     restartText.x = 400;
-    restartText.y = 365;
+    restartText.y = 465;
     stage.addChild(restartText);
     
     if(winOrLose == 0){
