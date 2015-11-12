@@ -81,7 +81,7 @@ function startMenu()
         });
 
     stage.addChild(startButton);
-    startButton.on('mousedown', onDown);
+    
 
     var tutorialButton = new PIXI.Graphics();
     tutorialButton = PIXI.Sprite.fromImage('Assets/Buttons/TutorialButton.png');
@@ -531,10 +531,6 @@ function youLose(winOrLose)
     shotCount = 3;
     restartButton.on('mousedown', onDown);
 
-   /* 
-   This function was placed so that it could not be referenced in the start menu function.
-   I moved it outside of all functions for now, because I did not know if it was referened
-   anywhere else in code. Should it be a global function or inside another?
    function onDown(eventData)
     {
         stage.removeChild(restartButton);
@@ -542,14 +538,5 @@ function youLose(winOrLose)
         stage.removeChild(titleText);
         generateNumberLine();
         testScene();
-    }*/
-}
-
-    function onDown(eventData)
-    {
-        stage.removeChild(restartButton);
-        stage.removeChild(restartText);
-        stage.removeChild(titleText);
-        generateNumberLine();
-        testScene();
     }
+}
