@@ -247,11 +247,12 @@ function makeShotBox(){
     stage.addChild(shotBox[0]);
     //draw the canonballs
     for(i=shotCount; i>0; i--){
-        shotBox[i] = new PIXI.Graphics();
-        shotBox[i].lineStyle(2, 0x242124, 1);
-        shotBox[i].beginFill(0x000000, 1);
-        shotBox[i].drawCircle(((i*100)), 88, 20);
-        shotBox[i].endFill();
+        var startButton = new PIXI.Graphics();
+        shotBox[i] = PIXI.Sprite.fromImage('Assets/Sprites/BombSprite.png');
+        shotBox[i].scale.x = 0.5;
+        shotBox[i].scale.y = 0.5;
+        shotBox[i].x = (i*87);
+        shotBox[i].y = 65;
         stage.addChild(shotBox[i]);
     }
     shotBox[4] = new PIXI.Text('Cannonballs Left', stylePirate);
