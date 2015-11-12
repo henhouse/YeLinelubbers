@@ -122,12 +122,12 @@ function startMenu()
     
     
 
-    var titleMusic = new Howl({
-        urls: ['Assets/Music/Davy Jones.mp3'],
-        autoplay: true,
-        loop: true,
-        volume: 0.5
-    });
+//    var titleMusic = new Howl({
+//        urls: ['Assets/Music/namehere.mp3'],
+//        autoplay: true,
+//        loop: true,
+//        volume: 0.5
+//    });
     
     var texture01 = PIXI.Texture.fromImage('Assets/Buttons/Volume_On.png');
     var texture02 = PIXI.Texture.fromImage('Assets/Buttons/Volume_Off.png');
