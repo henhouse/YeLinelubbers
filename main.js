@@ -2,6 +2,7 @@ var stage, renderer;
 var ship;
 var graphics;
 var enemyShip;
+var startShip;
 var questionText;
 var questionTextX = 625;
 var questionTextY = 45;
@@ -66,6 +67,13 @@ window.onload = function()
 
 function startMenu()
 {
+
+    // Random ship going by
+    startShip = PIXI.Sprite.fromImage('Assets/Ships/Ship.png');
+    startShip.x = 900;
+    startShip.y = 400;
+    stage.addChild(startShip);
+
     var startButton = new PIXI.Graphics();
     startButton = PIXI.Sprite.fromImage('Assets/Buttons/StartButton.png');
     startButton.interactive = true;
@@ -80,12 +88,13 @@ function startMenu()
             stage.removeChild(tutorialButton);
             stage.removeChild(leaderboardsButton);
             stage.removeChild(titleText);
+            stage.removeChild(startShip);
             generateNumberLine();
             testScene();
         });
 
     stage.addChild(startButton);
-    
+
 
     var tutorialButton = new PIXI.Graphics();
     tutorialButton = PIXI.Sprite.fromImage('Assets/Buttons/TutorialButton.png');
@@ -233,6 +242,9 @@ function generateNumberLine()
 function animate()
 {
     requestAnimationFrame(animate);
+
+    // make start screen ship slowly move to the left
+    startShip.x -= .25;
 
     // render the container
     renderer.render(stage);
