@@ -68,9 +68,8 @@ window.onload = function()
 
 function startMenu()
 {
-
     // Random ship going by
-    startShip = PIXI.Sprite.fromImage('Assets/Ships/Ship.png');
+    startShip = PIXI.Sprite.fromImage('Assets/Ships/BadGuyShip.png');
     startShip.x = 900;
     startShip.y = 400;
     stage.addChild(startShip);
