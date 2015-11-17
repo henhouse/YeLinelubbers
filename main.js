@@ -17,10 +17,9 @@ var linexStart = 20;
 var linexEnd = 980;
 var linexIncremented = linexStart;
 var lineLength = linexEnd - linexStart;
-var lineNumbers = 20;
-var increments = lineLength/lineNumbers;
+var increments = lineLength/20;
 var liney = 675;
-var currentNumber = (lineNumbers/2) * -1;
+var currentNumber = -10;
 var numX = linexStart-10;
 var numY = liney+40;
 var numxIncrement = numX;
@@ -174,11 +173,9 @@ function generateNumberLine()
     graphics.lineTo(linexEnd, liney);
 
     // loop and create vertical lines
-    var upBound = lineNumbers/2;
-    var lowBound = 0 - upBound;
-    for (var i = currentNumber; i <= lineNumbers; i++)
+    for (var i = currentNumber; i <= 10; i++)
     {
-        if (i == 0 || i == lowBound || i == upBound)
+        if (i == 0 || i == -10 || i == 10)
         {
             graphics.moveTo(linexIncremented, liney-30);
             graphics.lineTo(linexIncremented, liney+30);
