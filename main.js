@@ -74,58 +74,34 @@ function startMenu()
     startShip.y = 400;
     stage.addChild(startShip);
 
+
+    var startBG = new PIXI.Graphics();
+    startBG.lineStyle(2, 0x242124, 1);
+    startBG.beginFill(0x3548FF, 0.25);
+    startBG.drawRoundedRect(350, 565, 300, 100, 15);
+    startBG.endFill();
+    startBG.interactive = false;
+    stage.addChild(startBG);
+
     var startButton = new PIXI.Graphics();
-    startButton = PIXI.Sprite.fromImage('Assets/Buttons/StartButton.png');
+    startButton = PIXI.Sprite.fromImage('Assets/Buttons/Start.png');
     startButton.interactive = true;
     startButton.buttonMode = true;
     startButton.anchor.set(0.5);
     startButton.x = 500;
-    startButton.y = 365;
+    startButton.y = 610;
     startButton
         // on release
         .on('mouseup', function() {
             stage.removeChild(startButton);
-            stage.removeChild(tutorialButton);
-            stage.removeChild(leaderboardsButton);
             stage.removeChild(titleText);
             stage.removeChild(startShip);
+            stage.removeChild(startBG);
             generateNumberLine();
             testScene();
         });
 
     stage.addChild(startButton);
-
-
-    var tutorialButton = new PIXI.Graphics();
-    tutorialButton = PIXI.Sprite.fromImage('Assets/Buttons/TutorialButton.png');
-    tutorialButton.interactive = true;
-    tutorialButton.buttonMode = true;
-    tutorialButton.anchor.set(0.5);
-    tutorialButton.x = 500;
-    tutorialButton.y = 475;
-    tutorialButton
-        // on release
-        .on('mouseup', function() {
-            // generate tutorial
-        });
-
-    stage.addChild(tutorialButton);
-
-
-    var leaderboardsButton = new PIXI.Graphics();
-    leaderboardsButton = PIXI.Sprite.fromImage('Assets/Buttons/LeaderboardsButton.png');
-    leaderboardsButton.interactive = true;
-    leaderboardsButton.buttonMode = true;
-    leaderboardsButton.anchor.set(0.5);
-    leaderboardsButton.x = 500;
-    leaderboardsButton.y = 585;
-    leaderboardsButton
-        // on release
-        .on('mouseup', function() {
-            // leaderboard code
-        });
-
-    stage.addChild(leaderboardsButton);
 
 
     var titleText = new PIXI.Text('Welcome to Linelubbers!', style);
