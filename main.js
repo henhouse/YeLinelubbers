@@ -480,6 +480,13 @@ function subtractShot()
     }
     
 }
+
+
+function removeText() 
+    {
+        stage.removeChild(titleText);
+}
+
 function youLose(winOrLose)
 {
     //clear the stage
@@ -496,7 +503,10 @@ function youLose(winOrLose)
     }
     var restartButton = new PIXI.Graphics();
     
-    // draw a rounded rectangle
+    
+    
+    if(winOrLose == 0){
+        // draw a rounded rectangle
     restartButton.lineStyle(2, 0x242124, 1);
     restartButton.beginFill(0xFF00BB, 0.25);
     restartButton.drawRoundedRect(350, 450, 300, 100, 15);
@@ -508,25 +518,40 @@ function youLose(winOrLose)
     restartText.x = 400;
     restartText.y = 465;
     stage.addChild(restartText);
-    
-    if(winOrLose == 0){
+        
         var titleText = new PIXI.Text('Our Ship is sunk!', style);
         titleText.x = 300;
         titleText.y = 200;
         stage.addChild(titleText);
+        
+        answerCorrect = 0;
+    secondAnswerCorrect = 0;
+    currentNumber = -10;
+    numxIncrement = numX;
+    linexIncremented = linexStart;
+    shotCount = 3;
     } else {
         var titleText = new PIXI.Text('Good work mate!', style);
         titleText.x = 300;
         titleText.y = 200;
         stage.addChild(titleText);
-    }
-    
-    answerCorrect = 0;
+        
+        answerCorrect = 0;
     secondAnswerCorrect = 0;
-    currentNumer = -10;
+    currentNumber = -10;
     numxIncrement = numX;
     linexIncremented = linexStart;
     shotCount = 3;
+       
+        
+        
+        setTimeout(generateNumberLine, 1500);
+        setTimeout(testScene, 1500);
+        setTimeout(removeText, 1500);
+        
+    }
+    
+    
     restartButton.on('mousedown', onDown);
 
    function onDown(eventData)
@@ -538,3 +563,5 @@ function youLose(winOrLose)
         testScene();
     }
 }
+    
+    
