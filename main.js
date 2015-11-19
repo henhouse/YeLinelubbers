@@ -3,6 +3,8 @@ var ship;
 var graphics;
 var enemyShip;
 var startShip;
+var logo;
+var startButton;
 var questionText;
 var questionTextX = 625;
 var questionTextY = 45;
@@ -68,46 +70,43 @@ window.onload = function()
 
 function startMenu()
 {
+    logo = new PIXI.Graphics();
+    logo = PIXI.Sprite.fromImage('Assets/Buttons/Title.png');
+    logo.interactive = false;
+    logo.buttonMode = false;
+    logo.anchor.set(0.5);
+    logo.x = 510;
+    logo.y = 380;
+    logo.alpha = 0.1;
+    stage.addChild(logo);
+
+
     // Random ship going by
     startShip = PIXI.Sprite.fromImage('Assets/Ships/BadGuyShip.png');
     startShip.x = 900;
-    startShip.y = 400;
+    startShip.y = 350;
     stage.addChild(startShip);
 
 
-    var startBG = new PIXI.Graphics();
-    startBG.lineStyle(2, 0x242124, 1);
-    startBG.beginFill(0x3548FF, 0.25);
-    startBG.drawRoundedRect(350, 565, 300, 100, 15);
-    startBG.endFill();
-    startBG.interactive = false;
-    stage.addChild(startBG);
-
-    var startButton = new PIXI.Graphics();
-    startButton = PIXI.Sprite.fromImage('Assets/Buttons/Start.png');
+    startButton = new PIXI.Graphics();
+    startButton = PIXI.Sprite.fromImage('Assets/Buttons/newStart.png');
     startButton.interactive = true;
     startButton.buttonMode = true;
     startButton.anchor.set(0.5);
     startButton.x = 500;
-    startButton.y = 610;
+    startButton.y = 675;
+    startButton.alpha = 0.0;
     startButton
         // on release
         .on('mouseup', function() {
             stage.removeChild(startButton);
-            stage.removeChild(titleText);
             stage.removeChild(startShip);
-            stage.removeChild(startBG);
+            stage.removeChild(logo);
             generateNumberLine();
             testScene();
         });
 
     stage.addChild(startButton);
-
-
-    var titleText = new PIXI.Text('Welcome to Linelubbers!', style);
-    titleText.x = 200;
-    titleText.y = 200;
-    stage.addChild(titleText);
 
 
     // Music by YouTuber Ross Bugden
@@ -222,7 +221,13 @@ function animate()
     requestAnimationFrame(animate);
 
     // make start screen ship slowly move to the left
-    startShip.x -= .25;
+    startShip.x -= 0.25;
+    
+    if (logo.alpha < 1.0)
+        logo.alpha += 0.01;
+
+    if (startButton.alpha < 1.0)
+        startButton.alpha += 0.01;
 
     // render the container
     renderer.render(stage);
