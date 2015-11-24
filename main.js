@@ -131,11 +131,11 @@ function startMenu()
             if(onOrOff == 1){
                 titleMusic.pause();
                 onOrOff = 0;
-                music.setTexture(texture02);
+                music.texture = texture02;
             } else {
                 titleMusic.play();
                 onOrOff = 1;
-                music.setTexture(texture01);
+                music.texture = texture01;
 
             }
         });
