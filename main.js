@@ -5,6 +5,7 @@ var enemyShip;
 var startShip;
 var logo;
 var startButton;
+var creditsText;
 var questionText;
 var questionTextX = 625;
 var questionTextY = 45;
@@ -46,6 +47,16 @@ var stylePirate = {
     dropShadowDistance : 2,
     wordWrap : true,
     wordWrapWidth : 345
+};
+var creditsStyle = {
+    font : 'bold 12px Arial',
+    fill : '#F7EDCA',
+    dropShadow : true,
+    dropShadowColor : '#000000',
+    dropShadowAngle : Math.PI / 6,
+    dropShadowDistance : 1,
+    wordWrap : true,
+    wordWrapWidth : 50
 };
 
 window.onload = function()
@@ -101,6 +112,7 @@ function startMenu()
             stage.removeChild(startButton);
             stage.removeChild(startShip);
             stage.removeChild(logo);
+            stage.removeChild(creditsText);
             generateNumberLine();
             testScene();
         });
@@ -142,6 +154,21 @@ function startMenu()
     stage.addChild(music);
     music.scale.x = 0.3;
     music.scale.y = 0.3;
+
+    creditsText = new PIXI.Text('π', creditsStyle);
+    creditsText.x = 5;
+    creditsText.y = 730;
+    creditsText.alpha = 0;
+    creditsText.interactive = true;
+    creditsText.buttonMode = true;
+    creditsText
+        .on('mouseup', function() {
+            stage.removeChild(startButton);
+            stage.removeChild(startShip);
+            stage.removeChild(logo);
+            stage.removeChild(creditsText);
+    });
+    //stage.addChild(creditsText);
 }
 
 function testScene()
@@ -230,11 +257,15 @@ function animate()
     if (startButton.alpha < 1.0)
         startButton.alpha += 0.01;
 
+    if (creditsText.alpha < 1.0)
+        creditsText.alpha += 0.01;
+
     // render the container
     renderer.render(stage);
 }
 
-function makeShotBox(){
+function makeShotBox()
+{
     shotBox[0] = new PIXI.Graphics();
 
     // draw a rounded rectangle
@@ -242,8 +273,8 @@ function makeShotBox(){
     shotBox[0].drawRoundedRect(50, 50, 300, 75, 15);
     stage.addChild(shotBox[0]);
     //draw the canonballs
-    for(i=shotCount; i>0; i--){
-        var startButton = new PIXI.Graphics();
+    for (i=shotCount; i>0; i--)
+    {
         shotBox[i] = PIXI.Sprite.fromImage('Assets/Sprites/BombSprite.png');
         shotBox[i].scale.x = 0.5;
         shotBox[i].scale.y = 0.5;
@@ -276,18 +307,21 @@ function makeShip()
             this.data = null;
             var snapShip = getClosestNumber(this.position.x, this.position.y);
             //console.log(snapShip);
-            if (snapShip != -1) {
+            if (snapShip != -1)
+            {
                 this.position.x = snapShip.x;
                 this.position.y = snapShip.y-15;
             }
             //window.alert(answerCorrect);
-            if(snapShip == -1){
-
-            } else if (snapShip.number == answer && answerCorrect == 0) {
-                section = cont();
-            }else{
-                section = wrongAns(1);
+            if (snapShip == -1)
+            {
+                // um, hello?
+                // what is this if statement? LOL
             }
+            else if (snapShip.number == answer && answerCorrect == 0)
+                section = cont();
+            else
+                section = wrongAns(1);
         })
         // drag move
         .on('mousemove', function() {
