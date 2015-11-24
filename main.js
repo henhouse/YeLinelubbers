@@ -136,7 +136,7 @@ function startMenu()
                 titleMusic.play();
                 onOrOff = 1;
                 music.setTexture(texture01);
-                
+
             }
         });
     stage.addChild(music);
@@ -150,7 +150,7 @@ function testScene()
     answer = startPosition;
     makeShotBox()
     makeShip();
-    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Place our ship at ' + startPosition, stylePirate);
+    questionText = new PIXI.Text('Ahoy matey, let\'s get started! Drag and place our ship at ' + startPosition, stylePirate);
     questionText.x = questionTextX;
     questionText.y = questionTextY;
     stage.addChild(questionText);
@@ -184,27 +184,31 @@ function generateNumberLine()
         {
             graphics.moveTo(linexIncremented, liney-15);
             graphics.lineTo(linexIncremented, liney+15);
-            
+
         }
-        if(i > 9 || i < -9){
+        if (i > 9 || i < -9)
+        {
             ppoo[array] = new PIXI.Text(i, {font: 'bold 25px Verdana'});
             ppoo[array].x = numxIncrement-10;
-        } else if(i > -10 && i < 0){
+        }
+        else if (i > -10 && i < 0)
+        {
             ppoo[array] = new PIXI.Text(i, {font: 'bold 25px Verdana'});
             ppoo[array].x = numxIncrement-5;
-        } else if(i >= 0 && i < 10){
+        }
+        else if (i >= 0 && i < 10)
+        {
             ppoo[array] = new PIXI.Text(i, {font: 'bold 25px Verdana'});
             ppoo[array].x = numxIncrement+2;
         }
         ppoo[array].y = numY;
         stage.addChild(ppoo[array]);
         numxIncrement += increments;
-        
+
         linexIncremented += increments;
         array++;
-        
     }
-    
+
     // add it the stage so we see it on our screens..
     stage.addChild(graphics);
     //graphics.interactive = true;
@@ -219,7 +223,7 @@ function animate()
 
     // make start screen ship slowly move to the left
     startShip.x -= 0.25;
-    
+
     if (logo.alpha < 1.0)
         logo.alpha += 0.01;
 
@@ -232,7 +236,7 @@ function animate()
 
 function makeShotBox(){
     shotBox[0] = new PIXI.Graphics();
-    
+
     // draw a rounded rectangle
     shotBox[0].lineStyle(2, 0x242124, 1);
     shotBox[0].drawRoundedRect(50, 50, 300, 75, 15);
@@ -278,7 +282,7 @@ function makeShip()
             }
             //window.alert(answerCorrect);
             if(snapShip == -1){
-                
+
             } else if (snapShip.number == answer && answerCorrect == 0) {
                 section = cont();
             }else{
@@ -297,7 +301,7 @@ function makeShip()
     // initiallize the ship in its designated location
     ship.position.x = 750;
     ship.position.y = 455;
-    
+
     stage.addChild(ship);
 }
 
@@ -325,7 +329,7 @@ function makeEnemy()
             }
             //window.alert(answerCorrect);
             if(snapShip == -1){
-                
+
             } else if(snapShip.number == secondAnswer && secondAnswerCorrect == 0){
                 cont2();
             }else{
@@ -344,7 +348,7 @@ function makeEnemy()
     // initiallize the ship in its designated location
     enemyShip.position.x = 750;
     enemyShip.position.y = 455;
-    
+
     stage.addChild(enemyShip);
 }
 
@@ -359,7 +363,7 @@ function getClosestNumber(x, y)
         var d = Math.sqrt( (currentX - x)*(currentX - x) + (currentY - y)*(currentY - y) );
         numlineAnswers.push( {distance: d, x: currentX, y: currentY, number: currentNum} );
     }
-    
+
     var lowest_index = 0;
     var lowest_distance = numlineAnswers[0].distance;
     for (var i = 0; i < numlineAnswers.length; i+=increments) {
@@ -388,7 +392,7 @@ function cont()
             distanceFrom --;
         }
     }
-    
+
     var findEm = distanceFrom - startPosition;
     if(findEm < 0){
         findEm = findEm * -1;
@@ -397,7 +401,7 @@ function cont()
         direction = "positive"
     }
     secondAnswer = distanceFrom;
-        
+
     answerCorrect = 1;
     score += 10;
     stage.removeChild(scoreText);
@@ -478,7 +482,7 @@ function subtractShot()
     if(shotCount <= 0){
         youLose(0);
     }
-    
+
 }
 
 function youLose(winOrLose)
@@ -496,9 +500,9 @@ function youLose(winOrLose)
         stage.removeChild(shotBox[i]);
     }
     var restartButton = new PIXI.Graphics();
-    
-    
-    
+
+
+
     if (winOrLose == 0)
     {
         // draw a rounded rectangle
@@ -513,12 +517,12 @@ function youLose(winOrLose)
         restartText.x = 400;
         restartText.y = 465;
         stage.addChild(restartText);
-        
+
         var titleText = new PIXI.Text('Our Ship is sunk!', style);
         titleText.x = 300;
         titleText.y = 200;
         stage.addChild(titleText);
-        
+
         answerCorrect = 0;
         secondAnswerCorrect = 0;
         currentNumber = -10;
@@ -542,10 +546,10 @@ function youLose(winOrLose)
 
         setTimeout(generateNumberLine, 1500);
         setTimeout(testScene, 1500);
-        setTimeout(removeText, 1500);  
+        setTimeout(removeText, 1500);
     }
-    
-    
+
+
     restartButton.on('mousedown', onDown);
 
    function onDown(eventData)
@@ -556,10 +560,8 @@ function youLose(winOrLose)
         generateNumberLine();
         testScene();
     }
-    function removeText() 
+    function removeText()
     {
         stage.removeChild(titleText);
     }
 }
-    
-    
