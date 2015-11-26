@@ -7,3 +7,7 @@
        url('Fonts/DelitschAntiqua.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('Fonts/DelitschAntiqua.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
+
+body {
+    background-color: #000;
+}
