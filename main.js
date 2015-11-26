@@ -1,3 +1,13 @@
+/***********************
+~ YE LINELUBBERS ~
+
+A game made by Henry Henderson, Kyle Garner, Gunnar Bearley, Andy Thornburg, Rob Martin III for CSCI 373 Software Engineering as a game to help 7th graders 
+in North Carolina practice the number line.
+
+LICENSE: GPLv2
+
+************************/
+
 var stage, renderer;
 var ship;
 var graphics;
