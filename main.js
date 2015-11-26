@@ -9,6 +9,8 @@ LICENSE: GPLv2
 ************************/
 
 var stage, renderer;
+var height = 750;
+var width = 1000;
 var ship;
 var graphics;
 var enemyShip;
@@ -71,7 +73,7 @@ var creditsStyle = {
 
 window.onload = function()
 {
-    renderer = PIXI.autoDetectRenderer(1000, 750,{backgroundColor : 0x1099bb});
+    renderer = PIXI.autoDetectRenderer(width, height,{backgroundColor : 0x1099bb});
     document.getElementById('game').appendChild(renderer.view);
     // create the root of the scene graph
     stage = new PIXI.Container();
@@ -173,12 +175,42 @@ function startMenu()
     creditsText.buttonMode = true;
     creditsText
         .on('mouseup', function() {
-            stage.removeChild(startButton);
+            creditsScene();
             stage.removeChild(startShip);
             stage.removeChild(logo);
             stage.removeChild(creditsText);
+            stage.removeChild(startButton);
     });
-    //stage.addChild(creditsText);
+    stage.addChild(creditsText);
+}
+
+function creditsScene()
+{
+    var credits = new PIXI.Text("Authors", {font: 'bold 65px Verdana', fill : '#FFF'});
+    credits.x = width/2-130;
+    credits.y = height/2-200;
+    stage.addChild(credits);
+
+    var names = new PIXI.Text("Henry Henderson Kyle Garner Gunnar Bearley Andy Thornburg Rob Martin III", {font: 'bold 25px Verdana', fill : '#FFF', wordWrap : true, wordWrapWidth : 275, dropShadow : true, dropShadowColor : '#000000', dropShadowAngle : Math.PI / 6, dropShadowDistance : 1});
+    names.x = width/2-110;
+    names.y = height/2+70;
+    stage.addChild(names);
+
+    var backButton = new PIXI.Text("< Back", {font: 'bold 25px Verdana', fill : '#FFF'});
+    backButton.interactive = true;
+    backButton.buttonMode = true;
+    backButton.anchor.set(0.5);
+    backButton.x = 500;
+    backButton.y = 675;
+    backButton
+        // on release
+        .on('mouseup', function() {
+            stage.removeChild(backButton);
+            stage.removeChild(names);
+            stage.removeChild(credits);
+            startMenu();
+        });
+    stage.addChild(backButton);
 }
 
 function testScene()
